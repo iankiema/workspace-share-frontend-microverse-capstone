@@ -7,7 +7,7 @@ import Reservations from './pages/Reservations';
 function App() {
   return (
     <div>
-      <header>Workspace Share</header>
+      <header className="text-red-500 font-bold">Workspace Share</header>
       <main>
         <Navbar />
         <Routes>
