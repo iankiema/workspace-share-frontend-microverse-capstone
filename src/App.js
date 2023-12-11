@@ -6,7 +6,7 @@ import Reservations from './pages/Reservations';
 
 function App() {
   return (
-    <div>
+    <div className="font-montserrat">
       <header className="text-red-500 font-bold">Workspace Share</header>
       <main>
         <Navbar />
