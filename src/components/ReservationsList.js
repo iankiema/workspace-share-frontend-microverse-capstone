@@ -46,6 +46,33 @@ function ReservationsList() {
 	};
 
 	return (
+		<div className="container-fluid">
+			<div className="row">
+				<div className="col-lg-3">
+					<Navbar />
+				</div>
+
+				<div className="col-lg-9">
+					<h2>Reservations</h2>
+
+					{reservations.length > 0 ? (
+						reservations.map((res) => (
+							<div key={res.id}>
+								<p>Location: {res.attributes.location}</p>
+								<p>Date: {res.attributes.date}</p>
+
+								<button onClick={() => handleDelete(res.id)}>Delete</button>
+							</div>
+						))
+					) : (
+						<p>
+							You don't have any reservations at the moment. Visit the{" "}
+							<Link to="/book-reservation">Book Now Page</Link> to create one.
+						</p>
+					)}
+				</div>
+			</div>
+		</div>
 	);
 }
 
