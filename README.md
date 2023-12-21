@@ -77,13 +77,6 @@ The backend API for this application can be found [here](https://github.com/heno
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 🚀 Live Demo <a name="live-demo"></a>
-
-
-- [Live Demo Link](https://-----.netlify.app/)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
@@ -153,12 +146,6 @@ This application is deployed on [Netlify](href="https://app.netlify.com). To get
 - GitHub: [DevaWinner](https://github.com/DevaWinner)
 - Twitter: [WinnerDevq](https://twitter.com/WinnerDevq)
 - LinkedIn: [winnera](https://www.linkedin.com/in/winnera/)
-
-👤 **Henok K Hailemariam**
-
-- GitHub: [@henokkhm](https://github.com/henokkhm)
-- Twitter: [@henokkhm](https://twitter.com/henokkhm)
-- LinkedIn: [henokkhm](https://www.linkedin.com/in/henokkhm/)
 
 👤 **Ian Kiema**
 
