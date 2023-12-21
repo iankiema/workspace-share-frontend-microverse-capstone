@@ -1,3 +1,4 @@
+// src/App.js
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -21,15 +22,15 @@ function App() {
   const dispatch = useDispatch();
   const loginStatus = useSelector((state) => state.login_auths.loggedin);
 
-  const [setUserData] = useState({});
+  const [userData, setUserData] = useState({});
 
   const retrieveUserData = () => {
     // Retrieve the content from localStorage
-    const userDataJSON = localStorage.getItem('userData');
+    const userDataJSON = localStorage.getItem('userData', userData);
 
     // Parse the JSON content
     const storedUserData = JSON.parse(userDataJSON);
-    // console.log(storedUserData.extractedUserData);
+    console.log(storedUserData.extractedUserData);
     return storedUserData.extractedUserData || {};
   };
 

@@ -9,14 +9,13 @@
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
-  - [🚀 Live Demo ](#-live-demo-)
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
     - [Install](#install)
     - [Usage](#usage)
     - [Run tests](#run-tests)
-    - [Deployment](#deployment)
+  - [📚 API Documentation](#-api-documentation-)
   - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -57,12 +56,6 @@ The backend API for this application can be found [here](https://github.com/heno
   </ul>
 </details>
 
-<details>
-  <summary>Deployment</summary>
-  <ul>
-    <li><a href="https://app.netlify.com">Netlify</a></li>
-  </ul>
-</details>
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
@@ -74,13 +67,6 @@ The backend API for this application can be found [here](https://github.com/heno
 **User-Friendly Interface:** Intuitive and user-centric design for a hassle-free browsing and booking experience.
 
 **Collaborative Spaces:** Discover shared areas fostering collaboration and networking opportunities among like-minded professionals.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-
-- [Live Demo Link](https://-----.netlify.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -121,7 +107,7 @@ Install this project with:
 
 `npm start`
 
-Then open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page will reload when you make changes. You may also see any lint errors in the console.
+Then open [http://localhost:3001](http://localhost:3001) to view it in your browser. The page will reload when you make changes. You may also see any lint errors in the console.
 
 - To run the linters, run: 
 
@@ -137,10 +123,14 @@ Then open [http://localhost:3000](http://localhost:3000) to view it in your brow
 This will launch the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Deployment
+<!-- API Documentation -->
 
-This application is deployed on [Netlify](href="https://app.netlify.com). To get a new version deployed, simply commit or merge to the **development branch**. Netlify will take care of the **build step** and deploy the site automatically.
+## 📚 API Documentation <a name="API Documentation"></a>
+Follow these step to access the API Dumentation
+- Ensure the Rails server is running.
+- Open your browser and visit this link to view the documentation http://localhost:3000/api-docs/index.html.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -153,12 +143,6 @@ This application is deployed on [Netlify](href="https://app.netlify.com). To get
 - GitHub: [DevaWinner](https://github.com/DevaWinner)
 - Twitter: [WinnerDevq](https://twitter.com/WinnerDevq)
 - LinkedIn: [winnera](https://www.linkedin.com/in/winnera/)
-
-👤 **Henok K Hailemariam**
-
-- GitHub: [@henokkhm](https://github.com/henokkhm)
-- Twitter: [@henokkhm](https://twitter.com/henokkhm)
-- LinkedIn: [henokkhm](https://www.linkedin.com/in/henokkhm/)
 
 👤 **Ian Kiema**
 
@@ -188,7 +172,7 @@ This application is deployed on [Netlify](href="https://app.netlify.com). To get
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/henokkhm/workspace-share-frontend-microverse-capstone/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
