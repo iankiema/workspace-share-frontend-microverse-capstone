@@ -11,7 +11,7 @@
 
 .sidebar.show {
   transform: translateX(0);
-  z-index:1000;
+  z-index: 1000;
 }
 
 .sidebar-header {

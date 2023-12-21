@@ -8,7 +8,7 @@ import './splashscreen.css';
 function SplashScreen() {
   return (
     <div className="splash-screen">
-      <div className="background-image"></div>
+      <div className="background-image" />
       <div className="content">
         <h1>Welcome to Executive Workspaces</h1>
         <div className="buttons">

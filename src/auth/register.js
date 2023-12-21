@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { createUser } from '../redux/signupSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { createUser } from '../redux/signupSlice';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './signup.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import './signup.css'; // Import custom CSS
 
 function Signup() {
   const navigate = useNavigate();
@@ -34,6 +34,8 @@ function Signup() {
     if (message === 'done') {
       navigate('/home');
     } else if (message === 'failed') {
+      // Handle failed registration, e.g., display an error message
+      // console.error('Registration failed');
     }
   }, [message, navigate]);
 
@@ -48,18 +50,20 @@ function Signup() {
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
-      <div className="background-image2"></div>
+      <div className="background-image2" />
       <div className="card shadow p-4" style={{ width: '50%' }}>
         <div className="back-button">
           <NavLink to="/" className="btn btn-link">
-            <FontAwesomeIcon icon={faArrowLeft} /> Back
+            <FontAwesomeIcon icon={faArrowLeft} />
+            {' '}
+            Back
           </NavLink>
         </div>
         <form onSubmit={handleSubmit} className="form" style={{ width: '100%' }}>
-        <fieldset className="fieldset">
+          <fieldset className="fieldset">
             <legend className="form-header">Sign Up</legend>
             <div className="mb-3">
-              <label htmlFor="username" className="form-label" style={{width: '100%'}}>
+              <label htmlFor="username" className="form-label" style={{ width: '100%' }}>
                 Name
                 <input
                   className="form-control"
@@ -74,7 +78,7 @@ function Signup() {
               </label>
             </div>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label" style={{width: '100%'}}>
+              <label htmlFor="email" className="form-label" style={{ width: '100%' }}>
                 Email
                 <input
                   className="form-control"
@@ -88,7 +92,7 @@ function Signup() {
               </label>
             </div>
             <div className="mb-3">
-              <label htmlFor="password" className="form-label" style={{width: '100%'}}>
+              <label htmlFor="password" className="form-label" style={{ width: '100%' }}>
                 Password
                 <input
                   className="form-control"
@@ -103,7 +107,7 @@ function Signup() {
               </label>
             </div>
             <div className="mb-3">
-              <label htmlFor="c-password" className="form-label" style={{width: '100%'}}>
+              <label htmlFor="c-password" className="form-label" style={{ width: '100%' }}>
                 Password Confirmation
                 <input
                   className="form-control"

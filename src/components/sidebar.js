@@ -22,9 +22,9 @@ function Sidebar() {
   return (
     <div>
       <div className="menu-bar" onClick={toggleMenu}>
-        <div className="bar"></div>
-        <div className="bar"></div>
-        <div className="bar"></div>
+        <div className="bar" />
+        <div className="bar" />
+        <div className="bar" />
       </div>
       <nav className={`sidebar ${showMenu ? 'show' : ''}`}>
         <div className="sidebar-header">

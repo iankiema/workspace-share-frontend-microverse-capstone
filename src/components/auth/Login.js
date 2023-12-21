@@ -24,11 +24,11 @@ class Login extends Component {
         'http://localhost:3001/sessions',
         {
           user: {
-            email: email,
-            password: password,
+            email,
+            password,
           },
         },
-        { withCredentials: true }
+        { withCredentials: true },
       )
       .then((response) => {
         if (response.data.logged_in) {
@@ -53,7 +53,7 @@ class Login extends Component {
     const { redirectToDashboard } = this.state;
 
     if (redirectToDashboard) {
-      window.location.href = "/dashboard";
+      window.location.href = '/dashboard';
     }
 
     return (
@@ -83,4 +83,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default Login;

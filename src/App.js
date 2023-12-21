@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -14,17 +13,15 @@ import Login from './auth/login';
 import Logout from './auth/logout';
 import PackageList from './components/PackageList';
 import PackageDetails from './components/PackageDetails';
-import ReservationsList from './components/ReservationList';
+import ReservationsList from './components/ReservationsList';
 import BookReservation from './components/BookReservation';
 import { checkLoginStatus } from './redux/loginSlice';
-
-
 
 function App() {
   const dispatch = useDispatch();
   const loginStatus = useSelector((state) => state.login_auths.loggedin);
 
-  const [userData, setUserData] = useState({});
+  const [setUserData] = useState({});
 
   const retrieveUserData = () => {
     // Retrieve the content from localStorage
@@ -32,7 +29,7 @@ function App() {
 
     // Parse the JSON content
     const storedUserData = JSON.parse(userDataJSON);
-    console.log(storedUserData.extractedUserData);
+    // console.log(storedUserData.extractedUserData);
     return storedUserData.extractedUserData || {};
   };
 
@@ -73,10 +70,10 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login message={loginStatus} />} />
               <Route path="/logout" element={Logout} />
-              <Route path="/packages" element={<PackageList/>} />
+              <Route path="/packages" element={<PackageList />} />
               <Route path="/packages/:slug" element={<PackageDetails />} />
-              <Route path="/reservations" element={<ReservationsList/>} />
-              <Route path="/book-reservation" element={<BookReservation/>} />
+              <Route path="/reservations" element={<ReservationsList />} />
+              <Route path="/book-reservation" element={<BookReservation />} />
             </Routes>
           </div>
         </Router>

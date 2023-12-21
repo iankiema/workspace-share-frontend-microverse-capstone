@@ -4,16 +4,17 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../assets/images/login\ background.jpg');
+  background-image: url('../assets/images/login\ background.jpg'); /* Replace with your blurred background image */
   background-size: cover;
   filter: blur(10px);
 }
 
+
 .card {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2); /* Adjust the alpha value for transparency */
   border: none;
   border-radius: 10px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /* Adjust the blur amount to match the background blur */
 }
 
 .back-button {

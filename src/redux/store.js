@@ -3,7 +3,6 @@ import signupSlice from './signupSlice';
 import loginSlice from './loginSlice';
 import logoutReducer from './logoutSlice';
 
-
 const store = configureStore({
   reducer: {
     signup_auths: signupSlice,

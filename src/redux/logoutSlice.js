@@ -8,8 +8,6 @@ export const logoutUser = createAsyncThunk(
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          // You might need to include authentication headers like the token
-          // Example: 'Authorization': `Bearer ${yourAuthToken}`
         },
       });
 
@@ -17,13 +15,9 @@ export const logoutUser = createAsyncThunk(
         throw new Error('Network response was not ok');
       }
 
-      // Clear any local storage or state data related to the user upon successful logout
       localStorage.clear();
 
-      // You might want to dispatch other actions indicating the successful logout
-      // dispatch(someOtherAction());
-
-      return true; // You might want to adjust this based on your API response structure
+      return true;
     } catch (error) {
       throw new Error('Something went wrong with the logout');
     }
@@ -41,27 +35,21 @@ const logoutSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(logoutUser.pending, (state) => {
-        return {
-          ...state,
-          status: 'loading',
-          error: null,
-        };
-      })
-      .addCase(logoutUser.fulfilled, (state) => {
-        return {
-          ...state,
-          status: 'succeeded',
-          error: null,
-        };
-      })
-      .addCase(logoutUser.rejected, (state, action) => {
-        return {
-          ...state,
-          status: 'failed',
-          error: action.error.message,
-        };
-      });
+      .addCase(logoutUser.pending, (state) => ({
+        ...state,
+        status: 'loading',
+        error: null,
+      }))
+      .addCase(logoutUser.fulfilled, (state) => ({
+        ...state,
+        status: 'succeeded',
+        error: null,
+      }))
+      .addCase(logoutUser.rejected, (state, action) => ({
+        ...state,
+        status: 'failed',
+        error: action.error.message,
+      }));
   },
 });
 

@@ -10,22 +10,21 @@ export default function Registration(props) {
     registrationErrors: '',
   });
 
-
   const handleSubmit = (event) => {
     const { email, password, password_confirmation } = state;
 
     axios
-      .post("http://localhost:3001/registrations", {
+      .post('http://localhost:3001/registrations', {
         user: { email, password, password_confirmation },
       }, { withCredentials: true })
-      .then(response => {
+      .then((response) => {
         if (response.data.status === 'created') {
           props.handleSuccessfulAuth(response.data);
           setState({ ...state, redirectToDashboard: true });
         }
       })
-      .catch(error => {
-        console.error("Registration error", error);
+      .catch((error) => {
+        console.error('Registration error', error);
       });
 
     event.preventDefault();
@@ -33,11 +32,11 @@ export default function Registration(props) {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setState(prevState => ({ ...prevState, [name]: value }));
+    setState((prevState) => ({ ...prevState, [name]: value }));
   };
 
   if (state.redirectToDashboard) {
-    window.location.href = "/dashboard"; // Use this for redirection
+    window.location.href = '/dashboard'; // Use this for redirection
   }
 
   return (
