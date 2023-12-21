@@ -1,0 +1,16 @@
+.jumbotron {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .jumbotron h1 {
+    color: #333;
+  }
+  
+  .jumbotron p {
+    color: #555;
+  }
+  
