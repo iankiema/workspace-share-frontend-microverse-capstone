@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 import { loginUser } from '../redux/loginSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './login.css';
