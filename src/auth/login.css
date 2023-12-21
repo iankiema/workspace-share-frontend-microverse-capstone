@@ -9,7 +9,6 @@
   filter: blur(10px);
 }
 
-
 .card {
   background: rgba(255, 255, 255, 0.2); /* Adjust the alpha value for transparency */
   border: none;
