@@ -15,6 +15,7 @@
     - [Install](#install)
     - [Usage](#usage)
     - [Run tests](#run-tests)
+  - [📚 API Documentation](#-api-documentation-)
   - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -121,6 +122,15 @@ Then open [http://localhost:3001](http://localhost:3001) to view it in your brow
 
 This will launch the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- API Documentation -->
+
+## 📚 API Documentation <a name="API Documentation"></a>
+Follow these step to access the API Dumentation
+- Ensure the Rails server is running.
+- Open your browser and visit this link to view the documentation http://localhost:3000/api-docs/index.html.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
