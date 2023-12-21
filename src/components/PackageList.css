@@ -1,0 +1,19 @@
+.social-icons-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.icon-button {
+  background: none;
+  border: 2px solid black;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  margin: 5px;
+  margin-top: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
