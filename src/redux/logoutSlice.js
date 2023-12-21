@@ -1,28 +1,25 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const logoutUser = createAsyncThunk(
-  'user/logoutUser',
-  async (_, { dispatch }) => {
-    try {
-      const response = await fetch('http://localhost:3000/api/v1/logout', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+export const logoutUser = createAsyncThunk('user/logoutUser', async () => {
+  try {
+    const response = await fetch('http://localhost:3000/api/v1/logout', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      localStorage.clear();
-
-      return true;
-    } catch (error) {
-      throw new Error('Something went wrong with the logout');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-  },
-);
+
+    localStorage.clear();
+
+    return true;
+  } catch (error) {
+    throw new Error('Something went wrong with the logout');
+  }
+});
 
 const initialState = {
   status: 'idle',
