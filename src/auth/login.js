@@ -6,8 +6,8 @@ import { loginUser } from '../redux/loginSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import './login.css'; // Import custom CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './login.css';
 
 function Login() {
   const navigate = useNavigate();
