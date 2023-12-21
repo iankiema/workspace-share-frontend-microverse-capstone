@@ -19,13 +19,26 @@ function Sidebar() {
     setShowMenu(!showMenu);
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      toggleMenu();
+    }
+  };
+
   return (
     <div>
-      <div className="menu-bar" onClick={toggleMenu}>
+      <button
+        className="menu-bar"
+        onClick={toggleMenu}
+        onKeyPress={handleKeyPress}
+        tabIndex="0" // Make it focusable
+        aria-label="Toggle menu"
+        type="button"
+      >
         <div className="bar" />
         <div className="bar" />
         <div className="bar" />
-      </div>
+      </button>
       <nav className={`sidebar ${showMenu ? 'show' : ''}`}>
         <div className="sidebar-header">
           <h3 className="logo-text">Executive Workspaces</h3>
@@ -42,12 +55,20 @@ function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/reservations" onClick={toggleMenu} className="nav-link">
+            <NavLink
+              to="/reservations"
+              onClick={toggleMenu}
+              className="nav-link"
+            >
               Reservations
             </NavLink>
           </li>
           <li>
-            <NavLink to="/book-reservation" onClick={toggleMenu} className="nav-link">
+            <NavLink
+              to="/book-reservation"
+              onClick={toggleMenu}
+              className="nav-link"
+            >
               Book Now
             </NavLink>
           </li>
