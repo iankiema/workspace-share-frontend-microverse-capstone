@@ -1,3 +1,4 @@
+// loginSlice.js
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -47,6 +48,8 @@ export const loginUser = createAsyncThunk(
     }
   },
 );
+
+// export const selectLoginUser = (state) => state.login_auths;
 
 const loginSlice = createSlice({
   name: 'login_auths',

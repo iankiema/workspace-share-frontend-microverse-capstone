@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+// ReservationsList.js
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './sidebar';
 
@@ -60,6 +61,14 @@ function ReservationsList() {
                   Date:
                   {res.attributes.date}
                 </p>
+
+                {/* Display booking information */}
+                {res.attributes.bookingInformation && (
+                  <p>
+                    Booking Information:
+                    {res.attributes.bookingInformation}
+                  </p>
+                )}
 
                 <button type="button" onClick={() => handleDelete(res.id)}>
                   Delete

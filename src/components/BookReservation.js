@@ -125,17 +125,41 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Navbar from './sidebar';
-import { loginUser, selectLoginUser } from '../redux/loginSlice';
+import { loginUser } from '../redux/loginSlice';
+import { checkLoginStatus } from '../redux/loginSlice';
 
 function BookReservation() {
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
   const [selectedPackage, setSelectedPackage] = useState('');
   const [packages, setPackages] = useState([]);
+  const [bookingInformation, setBookingInformation] = useState([]);
+
   const dispatch = useDispatch();
-  const loginUserState = useSelector(selectLoginUser)
+  const loginUserState = useSelector((state) => state.login_auths.loggedin);
+
+  const [data, setData] = useState({}) 
+
+  const retrieveUserData = () => {
+    // Retrieve the content from localStorage
+    const userDataJSON = localStorage.getItem('data', data);
+
+    // Parse the JSON content
+    const storedUserData = JSON.parse(userDataJSON);
+    console.log(storedUserData.extractedUserData);
+    return storedUserData.extractedUserData || {};
+  };
+
   useEffect(() => {
+
     async function getPackages() {
+        dispatch(checkLoginStatus());
+        if (loginStatus === 'true') {
+          setUserData(retrieveUserData());
+        }
+      }, [dispatch, loginStatus]);
+    else {
+      
       try {
         const response = await fetch('http://localhost:3000/api/v1/packages');
         const responseData = await response.json();
@@ -149,7 +173,7 @@ function BookReservation() {
         console.error('Error fetching packages:', error);
       }
     }
-
+  }
     getPackages();
   }, []);
 
@@ -158,22 +182,36 @@ function BookReservation() {
 
     try {
       if (loginUserState.status === '200') {
-      const token = loginUserState.data.token;
-      console.log("token:", token);
-      const response = await fetch('http://localhost:3000/api/v1/reservations', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ location, date, package: selectedPackage }),
-      });
+        setData
+        const token = loginUserState.data.token;
+        console.log("token:", token);
 
-      const responseData = await response.json();
+        // Send reservation data to the server
+        const response = await fetch('http://localhost:3000/api/v1/reservations', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            location,
+            date,
+            package: selectedPackage,
+            bookingInformation,
+          }),
+        });
 
-      console.log('Reservation created:', responseData);
-    } else {
-      console.error('User is not logged in.');
-    }
+        const responseData = await response.json();
+        console.log('Reservation created:', responseData);
+
+        // Add the booking information to the state
+        setBookingInformation((prevBookingInfo) => [...prevBookingInfo, responseData.data]);
+
+        // Dispatch the loginUser action to update the login state (if needed)
+        dispatch(loginUser(responseData.data));
+      } else {
+        console.error('User is not logged in.');
+      }
     } catch (error) {
       console.error('Error creating reservation:', error);
     }

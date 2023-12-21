@@ -4,39 +4,47 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
-import { loginUser } from '../redux/loginSlice';
+import { loginUser, selectLoginUser } from '../redux/loginSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './login.css';
 
 function Login({ handleSuccessfulAuth }) {
-  // Add missing prop
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const message = useSelector((state) => state.login_auths.loggedin);
+  const loginUserState = useSelector(selectLoginUser);
 
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
   });
 
+  const [error, setError] = useState(null);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await dispatch(loginUser(userInfo));
-      handleSuccessfulAuth(); // Call the prop function
+      if (typeof handleSuccessfulAuth === 'function') {
+        handleSuccessfulAuth(); // Call the prop function if it's a function
+      }
     } catch (error) {
-      // Handle the error properly (e.g., display an error message)
       console.error('Error logging in:', error);
+      // Handle the error or log it as needed
     }
   };
 
   useEffect(() => {
-    if (message === 'true') {
+    // Check the login status from Redux state
+    if (loginUserState.loggedin === 'true') {
+      // Call the prop function only if the user is logged in
+      handleSuccessfulAuth();
       navigate('/home');
-    } else if (message === 'false') {
-      navigate('/login');
+    } else if (loginUserState.loggedin === 'false') {
+      // You may handle this case differently (e.g., display an error message)
+      
+      console.log('User login failed.');
     }
-  }, [message, navigate]);
+  }, [loginUserState, handleSuccessfulAuth, navigate]);
 
   const handleChange = (e) => {
     setUserInfo((prevUserInfo) => ({
@@ -44,6 +52,7 @@ function Login({ handleSuccessfulAuth }) {
       [e.target.name]: e.target.value,
     }));
   };
+
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
