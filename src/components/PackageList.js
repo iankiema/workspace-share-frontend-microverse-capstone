@@ -12,7 +12,6 @@ import './PackageList.css';
 
 function PackageList() {
   const [packages, setPackages] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getPackages() {
@@ -20,7 +19,6 @@ function PackageList() {
         const response = await fetch('http://localhost:3000/api/v1/packages');
         const responseData = await response.json();
 
-        // Check if data property exists and is an array
         if (responseData.data && Array.isArray(responseData.data)) {
           setPackages(responseData.data);
         } else {
@@ -28,8 +26,6 @@ function PackageList() {
         }
       } catch (error) {
         console.error('Error fetching packages:', error);
-      } finally {
-        setLoading(false); // Set loading to false after data is fetched
       }
     }
 
@@ -76,13 +72,25 @@ function PackageList() {
                 </Link>
 
                 <div className="social-icons-container mx-auto">
-                  <button className="icon-button">
+                  <button
+                    className="icon-button"
+                    type="button"
+                    aria-label="Facebook"
+                  >
                     <FontAwesomeIcon icon={faFacebookF} />
                   </button>
-                  <button className="icon-button">
+                  <button
+                    className="icon-button"
+                    type="button"
+                    aria-label="Twitter"
+                  >
                     <FontAwesomeIcon icon={faTwitter} />
                   </button>
-                  <button className="icon-button">
+                  <button
+                    className="icon-button"
+                    type="button"
+                    aria-label="Instagram"
+                  >
                     <FontAwesomeIcon icon={faInstagram} />
                   </button>
                 </div>

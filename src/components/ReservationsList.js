@@ -13,7 +13,6 @@ function ReservationsList() {
         );
         const responseData = await response.json();
 
-        // Check if data property exists and is an array
         if (responseData.data && Array.isArray(responseData.data)) {
           setReservations(responseData.data);
         } else {
@@ -28,15 +27,12 @@ function ReservationsList() {
 
   const handleDelete = async (id) => {
     try {
-      // Logic to delete reservation
       await fetch(`http://localhost:3000/api/v1/reservations/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
-      // After successful deletion, update the reservations state
       setReservations((prevReservations) => prevReservations.filter((res) => res.id !== id));
     } catch (error) {
       console.error('Error deleting reservation:', error);
@@ -54,23 +50,25 @@ function ReservationsList() {
           <h2>Reservations</h2>
 
           {reservations.length > 0 ? (
-					  reservations.map((res) => (
-  <div key={res.id}>
-    <p>
-      Location:
-      {res.attributes.location}
-    </p>
-    <p>
-      Date:
-      {res.attributes.date}
-    </p>
+            reservations.map((res) => (
+              <div key={res.id}>
+                <p>
+                  Location:
+                  {res.attributes.location}
+                </p>
+                <p>
+                  Date:
+                  {res.attributes.date}
+                </p>
 
-    <button onClick={() => handleDelete(res.id)}>Delete</button>
-  </div>
-					  ))
+                <button type="button" onClick={() => handleDelete(res.id)}>
+                  Delete
+                </button>
+              </div>
+            ))
           ) : (
             <p>
-              You don't have any reservations at the moment. Visit the
+              You do not have any reservations at the moment. Visit the
               {' '}
               <Link to="/book-reservation">Book Now Page</Link>
               {' '}

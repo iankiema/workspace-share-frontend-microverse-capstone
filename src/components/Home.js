@@ -21,7 +21,7 @@ function Home() {
             <hr className="my-4" />
             <p>
               Our workspaces are designed with your success in mind. From
-              comfortable offices to state-of-the-art meeting rooms, we've got
+              comfortable offices to state-of-the-art meeting rooms, we&apos;ve got
               everything you need to thrive in the business world.
             </p>
             <p className="lead">

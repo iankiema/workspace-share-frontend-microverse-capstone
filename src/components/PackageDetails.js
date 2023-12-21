@@ -61,6 +61,7 @@ function PackageDetails() {
                     {packageDetails.attributes?.price}
                   </p>
                   <button
+                    type="button"
                     onClick={() => handleBookNow(packageDetails)}
                     className="btn btn-primary"
                   >
