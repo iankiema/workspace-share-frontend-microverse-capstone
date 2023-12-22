@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Navbar from './sidebar';
 import { loginUser } from '../redux/loginSlice';
@@ -6,48 +6,49 @@ import { loginUser } from '../redux/loginSlice';
 function BookReservation() {
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
-  const [packages, setPackages] = useState([]);
+  // const [packages, setPackages] = useState([]);
+  const [userData, setUserData] = useState({});
 
   const dispatch = useDispatch();
   const packageDetails = useSelector((state) => state.packageDetails);
 
   const retrieveUserData = () => {
     // Retrieve the content from localStorage
-    const userDataJSON = localStorage.getItem('data');
-
+    const userDataJSON = localStorage.getItem('userData', userData);
+    console.log('data', userDataJSON);
     // Parse the JSON content
     const storedUserData = JSON.parse(userDataJSON);
+    setUserData(storedUserData.extractedUserData || {});
+
     console.log(storedUserData.extractedUserData);
     return storedUserData.extractedUserData || {};
   };
 
-  useEffect(() => {
-    async function getPackages() {
-      try {
-        const response = await fetch('http://localhost:3000/api/v1/packages');
-        const responseData = await response.json();
+  // useEffect(() => {
+  //   async function getPackages() {
+  //     try {
+  //       const response = await fetch('http://localhost:3000/api/v1/packages');
+  //       const responseData = await response.json();
 
-        if (responseData.data && Array.isArray(responseData.data)) {
-          setPackages(responseData.data);
-        } else {
-          console.error('Invalid data format:', responseData);
-        }
-      } catch (error) {
-        console.error('Error fetching packages:', error);
-      }
-    }
+  //       if (responseData.data && Array.isArray(responseData.data)) {
+  //         setPackages(responseData.data);
+  //       } else {
+  //         console.error('Invalid data format:', responseData);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching packages:', error);
+  //     }
+  //   }
 
-    getPackages();
-  }, []);
+  //   getPackages();
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const token = retrieveUserData().token;
+      const { token } = retrieveUserData();
       const userId = retrieveUserData().id; // Retrieve user ID from local storage
-      console.log('token:', token);
-      console.log('userId:', userId);
 
       // Send reservation data to the server
       const response = await fetch('http://localhost:3000/api/v1/reservations', {
@@ -60,7 +61,7 @@ function BookReservation() {
           location,
           date,
           package: packageDetails, // Use the packageDetails from the state
-          userId,
+          user: userId,
         }),
       });
 

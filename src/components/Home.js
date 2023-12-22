@@ -6,13 +6,13 @@ import './home.css';
 
 function Home() {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid align-items-center mt-5">
       <div className="row">
         <div className="col-lg-3">
           <Navbar />
         </div>
         <div className="col-lg-9 mx-auto my-auto">
-          <div className="jumbotron mx-auto my-auto">
+          <div className="jumbotron mx-auto my-auto align-items-center">
             <h1 className="display-4">Welcome to Executive Workspaces</h1>
             <p className="lead">
               Discover a new level of productivity in our premium executive

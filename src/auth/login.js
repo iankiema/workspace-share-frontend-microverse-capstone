@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { loginUser } from '../redux/loginSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { loginUser } from '../redux/loginSlice';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import './login.css'; // Import custom CSS
@@ -47,15 +47,17 @@ function Login() {
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
-      <div className="background-image1"></div>
+      <div className="background-image1" />
       <div className="card shadow p-4" style={{ width: '50%' }}>
         <div className="back-button">
           <NavLink to="/" className="btn btn-link">
-            <FontAwesomeIcon icon={faArrowLeft} /> Back
+            <FontAwesomeIcon icon={faArrowLeft} />
+            {' '}
+            Back
           </NavLink>
         </div>
         <form onSubmit={handleSubmit} className="form" style={{ width: '100%' }}>
-        <fieldset className="fieldset">
+          <fieldset className="fieldset">
             <legend className="form-header">Login Page</legend>
             <div className="mb-3" style={{ width: '100%' }}>
               <label htmlFor="email" className="form-label" style={{ width: '100%' }}>
