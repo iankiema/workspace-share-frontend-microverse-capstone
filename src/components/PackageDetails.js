@@ -1,11 +1,12 @@
 // PackageDetails.js
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import Navbar from './sidebar';
 
 function PackageDetails() {
   const { slug } = useParams();
   const [packageDetails, setPackageDetails] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPackageDetails() {
@@ -29,8 +30,13 @@ function PackageDetails() {
     fetchPackageDetails();
   }, [slug]);
 
-  const handleBookNow = (selectedPackage) => {
+  const handleBookNow = () => {
+    const selectedPackage = {
+      id: packageDetails.id,
+      name: packageDetails.attributes?.name,
+    };
     // Placeholder logic for handling the booking process
+    navigate('/book-reservation', { state: { packageDetails: selectedPackage } });
     console.log('Booking now:', selectedPackage);
   };
 

@@ -1,15 +1,15 @@
+// Login.js
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import PropTypes from 'prop-types';
 import { loginUser } from '../redux/loginSlice';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './login.css';
 
-function Login({ handleSuccessfulAuth }) {
-  // Add missing prop
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import './login.css'; // Import custom CSS
+
+function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const message = useSelector((state) => state.login_auths.loggedin);
@@ -23,9 +23,7 @@ function Login({ handleSuccessfulAuth }) {
     e.preventDefault();
     try {
       await dispatch(loginUser(userInfo));
-      handleSuccessfulAuth(); // Call the prop function
     } catch (error) {
-      // Handle the error properly (e.g., display an error message)
       console.error('Error logging in:', error);
     }
   };
@@ -39,8 +37,10 @@ function Login({ handleSuccessfulAuth }) {
   }, [message, navigate]);
 
   const handleChange = (e) => {
-    setUserInfo((prevUserInfo) => ({
-      ...prevUserInfo,
+    e.preventDefault();
+
+    setUserInfo((userInfo) => ({
+      ...userInfo,
       [e.target.name]: e.target.value,
     }));
   };
@@ -56,19 +56,11 @@ function Login({ handleSuccessfulAuth }) {
             Back
           </NavLink>
         </div>
-        <form
-          onSubmit={handleSubmit}
-          className="form"
-          style={{ width: '100%' }}
-        >
+        <form onSubmit={handleSubmit} className="form" style={{ width: '100%' }}>
           <fieldset className="fieldset">
             <legend className="form-header">Login Page</legend>
             <div className="mb-3" style={{ width: '100%' }}>
-              <label
-                htmlFor="email"
-                className="form-label"
-                style={{ width: '100%' }}
-              >
+              <label htmlFor="email" className="form-label" style={{ width: '100%' }}>
                 Email
                 <input
                   className="form-control"
@@ -83,11 +75,7 @@ function Login({ handleSuccessfulAuth }) {
               </label>
             </div>
             <div className="mb-3">
-              <label
-                htmlFor="city"
-                className="form-label"
-                style={{ width: '100%' }}
-              >
+              <label htmlFor="city" className="form-label" style={{ width: '100%' }}>
                 Password
                 <input
                   className="form-control"
@@ -106,11 +94,7 @@ function Login({ handleSuccessfulAuth }) {
             </button>
             <div className="mt-3">
               <span>Don&apos;t have an account? </span>
-              <NavLink
-                to="/signup"
-                activeClassName="active"
-                className="btn btn-link"
-              >
+              <NavLink to="/signup" activeClassName="active" className="btn btn-link">
                 Sign up
               </NavLink>
             </div>
@@ -120,9 +104,5 @@ function Login({ handleSuccessfulAuth }) {
     </div>
   );
 }
-
-Login.propTypes = {
-  handleSuccessfulAuth: PropTypes.func.isRequired,
-};
 
 export default Login;

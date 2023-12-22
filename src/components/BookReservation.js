@@ -1,52 +1,75 @@
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Navbar from './sidebar';
 import { loginUser } from '../redux/loginSlice';
 
 function BookReservation() {
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
-  const [selectedPackage, setSelectedPackage] = useState('');
-  const [packages, setPackages] = useState([]);
+  // const [packages, setPackages] = useState([]);
+  const [userData, setUserData] = useState({});
 
-  useEffect(() => {
-    async function getPackages() {
-      try {
-        const response = await fetch('http://localhost:3000/api/v1/packages');
-        const responseData = await response.json();
+  const dispatch = useDispatch();
+  const packageDetails = useSelector((state) => state.packageDetails);
 
-        if (responseData.data && Array.isArray(responseData.data)) {
-          setPackages(responseData.data);
-        } else {
-          console.error('Invalid data format:', responseData);
-        }
-      } catch (error) {
-        console.error('Error fetching packages:', error);
-      }
-    }
+  const retrieveUserData = () => {
+    // Retrieve the content from localStorage
+    const userDataJSON = localStorage.getItem('userData', userData);
+    console.log('data', userDataJSON);
+    // Parse the JSON content
+    const storedUserData = JSON.parse(userDataJSON);
+    setUserData(storedUserData.extractedUserData || {});
 
-    getPackages();
-  }, []);
+    console.log(storedUserData.extractedUserData);
+    return storedUserData.extractedUserData || {};
+  };
+
+  // useEffect(() => {
+  //   async function getPackages() {
+  //     try {
+  //       const response = await fetch('http://localhost:3000/api/v1/packages');
+  //       const responseData = await response.json();
+
+  //       if (responseData.data && Array.isArray(responseData.data)) {
+  //         setPackages(responseData.data);
+  //       } else {
+  //         console.error('Invalid data format:', responseData);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching packages:', error);
+  //     }
+  //   }
+
+  //   getPackages();
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const { token } = loginUser.data;
-      console.log('token:', token);
-      const response = await fetch(
-        'http://localhost:3000/api/v1/reservations',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ location, date, package: selectedPackage }),
+      const { token } = retrieveUserData();
+      const userId = retrieveUserData().id; // Retrieve user ID from local storage
+
+      // Send reservation data to the server
+      const response = await fetch('http://localhost:3000/api/v1/reservations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
-      );
+        body: JSON.stringify({
+          location,
+          date,
+          package: packageDetails, // Use the packageDetails from the state
+          user: userId,
+        }),
+      });
 
       const responseData = await response.json();
-
       console.log('Reservation created:', responseData);
+
+      // Dispatch the loginUser action to update the login state (if needed)
+      dispatch(loginUser(responseData.data));
     } catch (error) {
       console.error('Error creating reservation:', error);
     }
@@ -55,14 +78,11 @@ function BookReservation() {
   return (
     <div className="container-fluid">
       <div className="row align-items-center">
-        {' '}
-        {/* Center both horizontally and vertically */}
         <div className="col-lg-3">
           <Navbar />
         </div>
+
         <div className="col-lg-9 d-flex justify-content-center vh-100">
-          {' '}
-          {/* Center horizontally */}
           <div className="card shadow my-auto">
             <div className="card-body">
               <h2 className="card-title">Book Reservation</h2>
@@ -89,24 +109,6 @@ function BookReservation() {
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
                     />
-                  </label>
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="package" className="form-label">
-                    Select Package:
-                    <select
-                      className="form-select"
-                      id="package"
-                      value={selectedPackage}
-                      onChange={(e) => setSelectedPackage(e.target.value)}
-                    >
-                      <option value="">Select a package</option>
-                      {packages.map((pack) => (
-                        <option key={pack.id} value={pack.attributes.slug}>
-                          {pack.attributes.name}
-                        </option>
-                      ))}
-                    </select>
                   </label>
                 </div>
                 <button type="submit" className="btn btn-primary">
