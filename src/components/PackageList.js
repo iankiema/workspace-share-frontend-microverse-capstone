@@ -18,7 +18,6 @@ function PackageList() {
       try {
         const response = await fetch('http://localhost:3000/api/v1/packages');
         const responseData = await response.json();
-
         if (responseData.data && Array.isArray(responseData.data)) {
           setPackages(responseData.data);
         } else {
